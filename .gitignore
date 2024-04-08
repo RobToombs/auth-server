@@ -3,3 +3,4 @@ auth-server.iml
 /frontend/web/html/
 /frontend/node_modules/
 /frontend/elm-stuff/
+/backend/auth-server

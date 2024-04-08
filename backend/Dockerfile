@@ -4,11 +4,11 @@ WORKDIR /app
 COPY . .
 
 RUN go mod download
-RUN go build -o /app/backend
+RUN go build -o /app/auth-server
 
 FROM alpine:latest
 
 WORKDIR /app
-COPY --from=build /app/backend .
+COPY --from=build /app/auth-server .
 
-CMD ["./backend"]
+CMD ["./auth-server"]
