@@ -17,20 +17,17 @@ type AuthToken struct {
 
 func main() {
 	router := gin.Default()
-	router.POST("/auth", authenticate)
 
 	router.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"*"},
 		AllowMethods:     []string{"POST", "OPTIONS"},
-		AllowHeaders:     []string{"Origin"},
-		ExposeHeaders:    []string{"Content-Length", "Content-Type"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Content-Length", "Accept-Encoding", "Authorization"},
+		ExposeHeaders:    []string{"Access-Control-Allow-Origin", "Content-Length"},
+		AllowAllOrigins:  true,
 		AllowCredentials: true,
-		AllowOriginFunc: func(origin string) bool {
-			return true
-		},
-		MaxAge: 12 * time.Hour,
+		MaxAge:           12 * time.Hour,
 	}))
 
+	router.POST("/auth", authenticate)
 	router.Run(":8080")
 }
 
